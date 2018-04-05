@@ -1,0 +1,216 @@
+<template>
+  <el-row class="warp">
+    <el-col :span="24" class="warp-breadcrum">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item>儿歌管理</el-breadcrumb-item>
+        <el-breadcrumb-item>歌单列表</el-breadcrumb-item>
+      </el-breadcrumb>
+    </el-col>
+  
+    <el-col :span="24" class="warp-main">
+      <el-form ref="form" :model="searchForm">
+       <!-- 第一行 -->
+      <el-row class='input-row'>
+        <span class="input-label">&nbsp;&nbsp;&nbsp;歌单ID</span>
+        <el-input class="input-suffix" placeholder="请输入内容" v-model="searchForm.playListId"></el-input>
+        <span class="input-label">&nbsp;&nbsp;&nbsp;歌单名称</span>
+        <el-input class="input-suffix" placeholder="请输入内容" v-model="searchForm.name">
+        </el-input>
+        <el-button class='search' type="primary" icon="el-icon-search" @click='onSubmit(1)'>搜索</el-button>
+      </el-row><!-- 第一行结束 -->
+      </el-form>
+       <router-link to="/childSongsAdd"> 
+        <el-button class='add-button' type="primary" icon="el-icon-plus" >创建歌单</el-button>
+      </router-link>
+
+
+      <!--列表-->
+      <el-table class='tabel-list'
+        :data="songSheetLists"
+        style="width: 100%">
+        <el-table-column
+          prop="songSheetId"
+          label="歌单ID"
+          width="200">
+        </el-table-column>
+        <el-table-column
+          prop="songSheetName"
+          label="歌单名称"
+          width="200">
+        </el-table-column>
+          <el-table-column
+          label="歌单曲目"
+          width="200">
+            <template slot-scope="scope">
+              <router-link to='/childSongsEdit'>
+              <el-tag class='sing-status editSong'
+                type= 'warning'
+                close-transition>管理</el-tag>
+              </router-link>
+            </template>
+          </el-table-column>
+         <el-table-column
+          prop="tag"
+          label="状态"
+          width="200">
+        <template slot-scope="scope">
+          <el-tag class='sing-status'
+            :type="scope.row.songSheetStatus === '上线' ? 'success' : 'danger'"
+            close-transition>{{scope.row.songSheetStatus}}</el-tag>
+        </template>
+        </el-table-column>
+         <el-table-column
+          prop="operate"
+          label="操作"> 
+          <template slot-scope="scope">
+            <el-button @click="editRow(scope.row.songSheetId)" type="text" size="small">编辑</el-button>
+            <template v-if="scope.row.songSheetStatus === '上线'">
+              <el-button type="text" size="small" @click='offLine(scope.row)'>下线</el-button>
+            </template>
+            <template v-else><el-button type="text" size="small" @click='downLine(scope.row)'>上线</el-button></template>
+            <el-button type="text" size="small" @click='deleteRow(scope.row)'>删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table><!--列表结束-->
+
+      <!--分页-->
+      <div class='page'>
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page.sync="currentPage4"
+          :page-sizes="[15, 20, 30]"
+          :page-size="15"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="400">
+        </el-pagination>
+      </div>
+       <!--分页结束-->
+    </el-col>
+
+  </el-row>
+</template>
+<script>
+  export default{
+    data(){
+      return {
+        searchForm:{
+          playListId:'',
+          name:''
+        },
+        songSheetLists:[
+        {
+          songSheetId:'1223213',
+          songSheetName:'最爱周杰伦',
+          songSheetStatus:'上线'
+        },{
+          songSheetId:'1223213',
+          songSheetName:'最爱周杰伦',
+          songSheetStatus:'下线'
+        },{
+          songSheetId:'1223213',
+          songSheetName:'最爱周杰伦',
+          songSheetStatus:'上线'
+        },{
+          songSheetId:'1223213',
+          songSheetName:'最爱周杰伦',
+          songSheetStatus:'上线'
+        }],
+        currentPage4: 4,
+      }
+    },
+    methods:{
+      offLine(row){
+        row.songSheetStatus='下线';
+        this.$options.methods.openNotifySuc.bind(this)('下线成功');
+      },
+      downLine(row){
+        row.songSheetStatus='上线';
+        this.$options.methods.openNotifySuc.bind(this)('上线成功');
+      },
+      deleteRow(row){
+        this.$options.methods.openNotifyConfirm.bind(this)(row);
+        //this.$options.methods.openNotifySuc.bind(this)('删除成功');
+      },
+      openNotifyConfirm(row){
+        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.songSheetLists.splice(row, 1);
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
+      },
+      openNotifySuc(message) {
+        this.$notify({
+          title: '成功',
+          message: message,
+          type: 'success',
+          duration: 1000
+        });
+      },
+      editRow(row){
+        this.$router.push({ name: '歌单添加', params: { songSheetId: row }})
+      },
+      handleSizeChange(val) {
+        console.log(`每页 ${val} 条`);
+      },
+      handleCurrentChange(val) {
+        console.log(`当前页: ${val}`);
+      },
+      onSubmit(num){
+        if(num){
+          this.searchForm.page = num
+        }
+        let _this=this
+        console.log(JSON.stringify(this.searchForm))
+        let params=qs.stringify(this.searchForm)
+        API.getPlayList(params).then(function(res){
+          if(res.status == 200){
+            _this.songSheetLists=res.data.results
+            _this.totalPage=res.data.total
+            if(res.data.total == 0){
+              _this.$message.error('暂时还没有数据')
+            }
+          }else{
+            _this.$message.error('获取失败')
+          }
+        },function(err){
+           _this.$message.error('网络连接错误')
+        })
+      }
+    },
+    filters: {
+      limitNum: function (value,n) {
+        if (!value) {
+          return ''
+        }
+        if (value.length<=15) {
+          return value
+        }else{
+          value =value.substr(0,n)+"...";
+          return value
+        }
+      }
+    }
+  }
+</script>
+<style scoped lang="scss">
+@import "../../assets/styles/lists.scss";
+  .editSong{
+    cursor:pointer;
+  }
+  .input-label{
+    margin-right:1px;
+  }
+</style>
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+.marquee{overflow: hidden;height:25px;float:left;white-space:nowrap;font-size:12px;}
+#test{
+	width:100px;
+	height: 100px;
+	background: red;
+}
+</style>
+<title>用javascript实现文字无缝平滑循环横向滚动</title>
+</head>
+<body>
+<div id="scrolldv" class="marquee"></div>
+<div id="test"></div>
+</body>
+<script type="text/javascript">
+
+    document.write(parseFloat("10") + "<br>");
+    document.write(parseFloat("10.33") + "<br>");
+    document.write(parseFloat("34 45 66") + "<br>");
+    document.write(parseFloat(" 60 ") + "<br>");
+    document.write(parseFloat("40 years") + "<br>");
+    document.write(parseFloat("He was 40") + "<br>");
+    // console.log(parseFloat("0.2")+parseFloat("0.2"))
+    // var c =parseFloat("0.2")+parseFloat("0.2")
+    // console.log(c)
+    // var d =c+0.2
+    // console.log(d)
+    function accAdd(arg1,arg2){
+        var r1,r2,m;
+        try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
+        try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
+        m=Math.pow(10,Math.max(r1,r2))
+        return (arg1*m+arg2*m)/m
+    }
+    Number.prototype.add = function (arg){
+    return accAdd(arg,this);
+    }
+    console.log((0.1).add(0.2))
+</script>
+</html>

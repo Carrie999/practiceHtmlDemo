@@ -1,0 +1,46 @@
+js制作左右滚动的通知效果：
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>js文字向左无缝滚动</title>
+</head>
+<body>
+<style type="text/css">
+.qimo8{ overflow:hidden; width:815px;}
+.qimo8 .qimo {/*width:99999999px;*/width:8000%; height:30px;}
+.qimo8 .qimo div{ float:left;}
+.qimo8 .qimo ul{float:left; height:30px; overflow:hidden; zoom:1; }
+.qimo8 .qimo ul li{float:left; line-height:30px; list-style:none;}
+.qimo8 li a{margin-right:200px;color:#444444;}
+</style>
+<div id="demo" class="qimo8">
+  <div class="qimo">
+    <div id="demo1">
+      <ul>
+        <li><a href='/office/194/46163.htm' >回收站里的文件删除了怎么恢复</a></li>
+        <li><a href='/office/193/46162.htm' >c盘哪些文件可以删除 系统就越来越慢怎么办</a></li>
+      </ul>
+    </div>
+    <div id="demo2"></div>
+  </div>
+</div>
+<script type="text/javascript">
+var demo = document.getElementById("demo");
+var demo1 = document.getElementById("demo1");
+var demo2 = document.getElementById("demo2");
+demo2.innerHTML=document.getElementById("demo1").innerHTML;
+function Marquee(){
+if(demo.scrollLeft-demo2.offsetWidth>=0){
+ demo.scrollLeft-=demo1.offsetWidth;
+}
+else{
+ demo.scrollLeft+=2;
+}
+}
+var myvar=setInterval(Marquee,30);
+demo.onmouseout=function (){myvar=setInterval(Marquee,30);}
+demo.onmouseover=function(){clearInterval(myvar);}
+</script>
+</body>
+</html>

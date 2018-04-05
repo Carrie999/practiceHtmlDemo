@@ -1,0 +1,30 @@
+<!-- webkfa.com -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>js直接操作css3属性transition和webkitTransform实现动画</title>
+  </head>
+   
+  <body>
+    <input type="button" value="往下" onclick="xia(100);"/>
+    <input type="button" value="往上" onclick="shang(0);"/>
+    <div style="width:50px;height:50px;background:red;" id="webkfaid"></div>
+    <script type="text/javascript">
+        function xia(sum){
+            var obj=document.getElementById("webkfaid");
+            obj.style.transition="-webkit-transform 500ms ease-out";
+            obj.style.webkitTransform="translate(0px,"+sum+"px) scale(1) translateZ(0px)";
+        }
+        function shang(sum){
+            var obj=document.getElementById("webkfaid");
+            obj.style.transition="-webkit-transform 500ms ease-out";
+            obj.style.webkitTransform="translate(0px,"+sum+"px) scale(1) translateZ(0px)";
+        }
+    </script>
+  </body>
+</html>

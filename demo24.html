@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .wrap{
+      width:800px;
+      height: 500px;
+      background: #ccc;
+    }
+    .testItem{
+      width:100px;
+      height: 100px;
+      background: yellow;
+      position: relative;
+      left:100px;
+      top:100px;
+    }
+   /* .testItem:hover{
+      background: red;
+      transform: perspective(100px);
+     /* animation: rotateRec 2s ease-in-out infinite;*/
+    .testItem:hover > .testItem_sub{
+      display: block;
+      transform-style: preserve-3d;
+      transform: perspective(1000px);
+      transform-origin:20% 100%;
+      animation: rotateRec 2s ease infinite;
+    }
+    @keyframes rotateRec{
+      0%{
+         transform: rotateX(0deg);
+
+      }
+      100%{
+        transform:  rotateX(90deg);
+      }
+    }
+    .testItem_sub{
+      display: none;
+      width: 100px;
+      height: 100px;
+      background: blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="testItem">
+      <div class="testItem_sub"></div>
+    </div>
+  </div>
+</body>
+<script src='parallax.js'></script>
+<script>
+ 
+  </script>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    
+  </div>
+</body>
+<script>
+  //翻转字符串
+  function reverseString(str){
+    var tmp = '';
+    for(var i=str.length-1; i>=0; i--)
+      tmp += str[i];
+    return tmp
+  }
+  //翻转字符串
+  // function reverseString1(str){
+  //   return [...str].reverse().join('');
+  // }
+  //cc=reverseString1('Hello Word!');
+   // console.log(cc)
+
+  // var numbers = [1, 2, 3, 4];
+
+  // function getSum(total, num) {
+  //     return total + num;
+  // }
+  // function myFunction(item) {
+  //   return numbers.reduceRight(getSum);
+  // }
+ // console.log(myFunction(numbers))
+
+function reverseString(str) {
+    // 设置递归终点(弹出条件)
+  if (str.length === 1) {
+        return str;
+    }
+    else {
+        // 递归调用
+        return reverseString(str.substr(1)) + str[0];
+    }
+  }
+  console.log(reverseString('abc'))
+</script>
+</html>

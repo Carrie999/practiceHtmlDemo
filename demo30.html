@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<link rel="stylesheet" type="text/css" href="http://sandbox.runjs.cn/uploads/rs/58/rhxzfkog/style_select.css">
+<script src="https://cdn.bootcss.com/vue/2.2.6/vue.min.js"></script>
+
+<div id="app">
+  <div style="float: left;">
+    <h2>下拉框选中值:{{select}}</h2>
+    <custom-select btn="查找" v-bind:list="list" v-model="select"></custom-select>
+  </div>
+</div>
+
+</body>
+<script>
+
+        Vue.component("custom-select",{
+        data:function(){
+          return {
+            selectShow:false,
+            val:""
+          };
+        },
+        props:["btn","list"],
+        template:`<section class="warp">
+          <div class="searchIpt clearFix">
+            <div class="clearFix">
+              <input type="text" readonly="readonly" class="keyWord" :value="val" @click="selectShow = !selectShow" />
+              <input type="button" :value="btn">
+              <span></span>
+  <img src="http://sandbox.runjs.cn/uploads/rs/58/rhxzfkog/select_delete.png" class="delete" @click="changeValueHandle('')" />
+            </div>
+            <custom-list 
+              v-show="selectShow" 
+              :list="list"
+              @receive="changeValueHandle"
+            ></custom-list>
+          </div>
+        </section>`,
+        methods:{
+          changeValueHandle(value){
+            this.val = value;
+            this.$emit('input', value);
+          }
+        },
+        computed: {
+          currentValue: {
+            get() {
+              return this.val;
+            },
+            set(val) {
+              this.$emit('input', val);
+            }
+          }
+        }
+      });
+
+      Vue.component("custom-list",{
+        props:["list"],
+        template:`<ul class="list">
+              <li v-for="item of list" @click="selectValueHandle(item)">{{item}}</li>
+            </ul>`,
+        methods:{
+          selectValueHandle:function(item){
+            this.$emit("receive",item);
+          }
+        }
+      }); 
+
+      new Vue({
+        el:"#app",
+        data:{
+          list:["Vue","D3","echarts","nodeJS","angular","MongoDb"],
+          select: ''
+        }
+      });
+</script>
+</html>

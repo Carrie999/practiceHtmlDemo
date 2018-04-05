@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div>21212121221122112211221</div>
+</body>
+<script>
+    console.log('121221')
+      window.addEventListener('message',function(e){
+        console.log('21122112')
+        console.log(e.data);        //hello world
+        console.log(e.origin);      //http://127.0.0.1:8020 所传来数据的域
+    })
+</script>
+</html>

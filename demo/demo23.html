@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .wrap{
+      width:800px;
+      height: 500px;
+      background: #ccc;
+    }
+    .testItem{
+      width:100px;
+      height: 100px;
+      border-radius: 50%;
+      background: yellow;
+      margin: 10px  100px;
+      position: relative;
+      top: 10px;
+      left: 100px;
+    }
+    .test{
+      width: 100px;
+      overflow: hidden;
+      white-space: nowrap;  
+      text-overflow: ellipsis;  
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="testItem"></div>
+    <div class="test">378272189fhsdhfbhsdhbfjsdsajsdkdklskdoasdlas;</div>
+  </div>
+</body>
+<script src='parallax.js'></script>
+<script>
+  // var div = document.querySelector('.testItem');  
+  // var w,h;  
+  // var pagex,pagey;  
+
+  // function getstyle(obj,name){  
+  //     if(obj.currentStyle){  
+  //         return obj.currentStyle[name];   
+  //     }else{  
+  //         return getComputedStyle(obj,null)[name];    
+  //     };  
+  // }; 
+
+  // function cc(){  
+  //     w = document.documentElement.clientWidth,  
+  //     h = document.documentElement.clientHeight;  
+  //     var l  = parseInt(window.getComputedStyle(div,null).left);  
+  //     var t  = parseInt(window.getComputedStyle(div,null).top); 
+  //     console.log(l)
+  //     console.log(t)
+  //     div.style.left= l+(- pagex/5 - l)*0.05+'px';  
+  //     div.style.top= t +(- pagey/5 - t)*0.05+'px';  
+  // }  
+
+  // // window.addEventListener('mousemove',function(ev){  
+  // //     pagex = ev.clientX-w/2;  
+  // //     pagey = ev.clientY-h/2;  
+  // //     // console.log(pagex)
+  // //     cc(); 
+  // // },false);
+  // function getUrl(name) {  
+  //   var reg = new RegExp(“(^|&)” + name + “=([^&]*)(&|$)”, “i”);  
+  //   var r = window.location.search.substr(1).match(reg);  
+  //   if (r != null) return unescape(r[2]); return null;  
+  //  };  
+  // getUrl() 
+  </script>
+</html>

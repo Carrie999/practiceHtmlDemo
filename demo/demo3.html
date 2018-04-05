@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+</head>
+
+<body>
+<style type="text/css">
+
+.pause {background-position: 0 bottom;}
+.mscBtn {height: 50px;
+background: #fff url(https://wx1.sinaimg.cn/mw1024/006QmCcnly1fm9dvz3kdhj3029029gli.jpg) no-repeat;
+display: block;}
+
+
+.Audio{position: relative; width: 500px; margin: 0 auto;}
+.pgs{width: 326px; margin: 0 auto 30px; background-color: #E3E8EE; text-align: center; position: relative; overflow: hidden; height: 35px;}
+.pgs-play{position: absolute; top:0; left: 4.65%; width: 0; height: 100%; background-color: #4785f9; z-index: 1;}
+.pgs img{width: 100%; position: relative; z-index: 2;}
+.audio-name{position: absolute; top: 0; width: 100%; left: 0;text-align: center; color: #666; font-size: 12px;}
+.controls{width: 100%; height: 40px; padding: 0; text-align: center;}
+.play-pause{border: 0; outline: 0; padding: 0; width: 40px; height: 40px; margin: 0 28px; background: none; display: inline-block; vertical-align: middle;}
+.icon-play{width: 40px; height: 40px; background: url(images/play.png) no-repeat; display: block; color: #478f59;}
+.icon-pause{width: 40px; height: 40px; background: url(images/pruse.png) no-repeat; display: block; color: #478f59;}
+.controls span{color: #b3b5b7; font-size: 12px; display: inline-block; width: 34px;}
+.audio-time{display: inline-block; vertical-align: middle;}
+
+
+</style>
+  <div class="test"> 
+
+http://www.mizuiren.com/327.html
+
+    <a class="mscBtn" id="audioBtn" title='最幸福的人' style="cursor:pointer;"></a>
+    <!--audio id="bgMusic" src="blackCoat.mp3" autoplay="autoplay"></audio-->
+       
+
+      <div class="Audio">
+      <audio id="audioTag" src="blackCoat.mp3" ></audio>
+      <div class="pgs">
+          <div class="pgs-play" id="progress" style="width: 20%;"></div>
+          <img src="">
+      </div>
+      <div class="controls">
+          <span class="played-time">12:00</span>
+          <button class="play-pause" id="playPause">
+              <span class="icon-btn icon-play"></span>
+          </button>
+          <span class="audio-time" id="audioTime">0</span>
+      </div>
+      </div>
+  </div> 
+
+  </script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      var music = document.getElementById("bgMusic");
+    $("#audioBtn").click(function(){
+    if(music.paused){music.play();
+      $("#audioBtn").removeClass("pause").addClass("play");
+    }
+    else{
+      music.pause();
+    $("#audioBtn").removeClass("play").addClass("pause");}});
+    });
+  </script>
+</body>
+
+</html>

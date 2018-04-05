@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+</body>
+<script>
+var users = [
+  {name: "张含韵", "email": "zhang@email.com","type": 1},
+  {name: "江一燕",   "email": "jiang@email.com","type": 1},
+  {name: "李小璐",  "email": "li@email.com","type": 1}
+];
+function multiplyArrayElement(num) {
+    return num * document.getElementById("multiplyWith").value;
+}
+var emails = users.map(function (user) { return user.email });
+// var arrayOfSquares = data.map(function (item) {
+//   return item * item;
+// });
+// alert(arrayOfSquares);
+
+var kvArray = [{name: "张含韵", "email": "zhang@email.com","type": 1},
+  {name: "江一燕",   "email": "jiang@email.com","type": 1},
+  {name: "李小璐",  "email": "li@email.com","type": 1}];
+
+var reformattedArray = kvArray.map(function(obj) { 
+   var rObj = {};
+   rObj['email'] = obj.email;
+   rObj['type'] = obj.type;
+   return rObj;
+});
+
+console.log(reformattedArray)
+</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    #bm{
+      height: 300px;
+      width: 1000px;
+      background: red;
+    }
+  </style>
+  1221122112
+  <div id ='bm'></div>
+</body>
+  <script src="bodymovin.js"></script>
+  <script>
+    var animation = bodymovin.loadAnimation({
+        container: document.getElementById('bm'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'data.json'
+    })
+  </script>
+</html>

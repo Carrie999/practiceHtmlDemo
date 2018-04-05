@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+.marquee{overflow: hidden;height:25px;float:left;white-space:nowrap;font-size:12px;}
+#test{
+	width:100px;
+	height: 100px;
+	background: red;
+}
+</style>
+<title>用javascript实现文字无缝平滑循环横向滚动</title>
+</head>
+<body>
+<div id="scrolldv" class="marquee"><span id="contentspan">新闻滚动字幕、新闻滚动字幕、新闻滚动字幕、新闻滚动字幕、新闻滚动字幕</span></div>
+<div id="test"></div>
+</body>
+<script type="text/javascript">
+	//获取滚动的内容长度
+	var content=document.getElementById("contentspan");
+    
+    console.log(content.offsetWidth)
+    console.log(content.offsetHeight)
+    console.log(content.offsetLeft)
+    console.log(content.offsetTop)
+    var test=document.getElementById("test");
+    console.log(test.offsetWidth)
+    console.log(test.offsetHeight)
+    console.log(test.clientWidth)
+    console.log(test.clientHeight)
+
+
+    console.log(test.offsetLeft)
+    console.log(test.offsetTop)
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/vue/2.1.3/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <div id="main">
+    <h1>count: {{times}}</h1> 
+  </div>
+</div>
+
+<script type="text/javascript">
+    
+var vm = new Vue({
+  el: '#main', 
+    data: function () { 
+      return { times: 1 }; 
+    },
+    created: function () { 
+      var me = this; 
+      setInterval(
+        function () { me.times++; },
+         1000); 
+    } 
+  });
+</script>
+</body>
+</html>

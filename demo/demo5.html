@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Files using XMLHttpRequest - Minimal</title>
+    <style type="text/css">
+    </style>
+    <script type="text/javascript">
+    function copyUrl() {
+    var Url = document.getElementById("url1");
+    Url.select(); // 选择对象
+    console.log( Url);
+    console.log(document.execCommand("Copy"));
+    document.execCommand("Copy"); // 执行浏览器复制命令
+    alert("已复制好，可贴粘。");
+
+}
+    </script>
+</head>
+<body>
+
+  <input type="text" value="www.xxx.com" id="url1" />
+  <input type="button" onClick="copyUrl()" value="点击复制代码" />
+</body>
+</html>

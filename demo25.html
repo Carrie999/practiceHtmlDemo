@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .content{
+      margin-left:200px;
+       margin-top:200px;
+      width: 100px;
+      height: 100px;
+      background:#ccc;
+      perspective:400;
+      -webkit-perspective:400;
+    }
+    .test{
+      display: inline-block;
+      width:100px;
+      height: 100px;
+      /*border-radius: 50%;*/
+      background: yellow;
+      /*transform: translateX(100px);*/
+      /*transform: translateY(100px);*/
+     /*transform: translateZ(100px);*/
+      animation: myMove 3s ease-in-out 1; 
+      /*transform: rotateY(45deg);*/
+      /*transform: rotateZ(45deg);*/
+      transform-origin:0% 0%; 
+      transform:scale(0.5);
+    }
+    @keyframes myMove{
+      0%{
+        transform: rotateX(0deg);
+      }
+      100%{
+        transform: rotateX(360deg);
+      }
+    } 
+
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <div class="test"></div>
+  </div>
+</body>
+  <script>
+    
+  </script>
+</html>

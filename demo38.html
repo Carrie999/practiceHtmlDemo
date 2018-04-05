@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .content{
+      margin-left:200px;
+       margin-top:200px;
+      width: 100px;
+      height: 100px;
+      background:#ccc;
+      perspective:400;
+      -webkit-perspective:400;
+    }
+    .test{
+      display: inline-block;
+      width:100px;
+      height: 100px;
+      /*border-radius: 50%;*/
+      background: yellow;
+      /*transform: translateX(100px);*/
+      /*transform: translateY(100px);*/
+     /*transform: translateZ(100px);*/
+      animation: into 0.8s ease-in 1; 
+      /*transform: rotateY(45deg);*/
+      /*transform: rotateZ(45deg);*/
+      transform-origin:50% 50%; 
+    }
+    @keyframes myMove{
+      0%{
+        transform: rotateX(0deg);
+      }
+      100%{
+        transform: rotateX(360deg);
+      }
+    } 
+    @keyframes into{
+      0%{
+        transform: scale(0);
+      }
+      100%{
+        transform: scale(1);
+      }
+    } 
+
+.contentItem{
+      box-shadow:0px 1px 5px gray;
+      position:absolute;
+      z-index:15;
+      transform-origin:50% 100%; 
+      box-sizing: border-box;
+      width:16.75rem;
+      background:#fff;
+      border-radius:0.25rem;
+      padding:0.5rem;
+      transform-origin:50% 100%;
+    }
+.contentItem2{
+      box-shadow:0px 1px 3px gray;
+      transform:scale(0.98);
+      position:absolute;
+      top:-0.45rem;
+      z-index:5;
+      transform-origin:50% 100%;
+      box-sizing: border-box;
+      margin-top:0.65rem;
+      margin-bottom:1.4rem;
+      width:16.75rem;
+      background:#fff;
+      height:14.5rem;
+      border-radius:0.25rem;
+      padding:0.5rem;
+      }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <div class="test"></div>
+  </div>
+</body>
+  <script>
+    
+  </script>
+</html>

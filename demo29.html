@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+</body>
+<script>
+
+  Vue.component('vTable',{
+    // ...
+      render:function(h){
+          var _this = this;
+          var ths = [];
+          this.currentColumns.forEach(function(col, index){
+              // console.log(col.title);
+              if(col.sortable){
+                  ths.push(h('th',[
+                      h('span',col.title),
+                      //升序
+                      h('a',{
+                          class:{
+                              on:col._sortType === 'asc'
+                          },
+                          on:{
+                              click:function(){
+                                  _this.handleSortByAsc(index)
+                              }
+                          }
+                      },''),
+                      //降序
+                      h('a',{
+                          class:{
+                              on:col._sortType === 'desc'
+                          },
+                          on:{
+                              click:function(){
+                                  _this.handleSortByDesc(index)
+                              }
+                          }
+                      },'')
+                  ]));
+              }else{
+                  ths.push(h('th',col.title));
+              }
+          });
+          var trs = [];
+          this.currentData.forEach(function(row){
+              var tds = [];
+              _this.currentColumns.forEach(function(cell){
+                  tds.push(h('td',row[cell.key]));
+              });
+              trs.push(h('tr',tds));
+          });
+          return h('table',[
+              h('thead',[
+                  h('tr',ths)
+              ]),
+              h('tbody',trs)
+          ]);
+      }
+  }
+</script>
+</html>

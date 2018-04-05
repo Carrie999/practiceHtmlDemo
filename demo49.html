@@ -1,0 +1,52 @@
+js制作左右滚动的通知效果：
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>js文字向左无缝滚动</title>
+</head>
+<body>
+<style>
+.qimo8{
+	margin-left: 500px;
+	/*padding-left: 100px;*/
+}
+.test{
+	width: 100px;
+	height: 100px;
+	background: red;
+	margin:0 auto;
+}
+.one{
+	margin-left: 310px;
+}
+.two{
+	margin-left: 210px;
+	background: #333;
+}
+.three{
+	margin-left: 110px;
+	background: yellow;
+}
+.four{
+	margin-left: 10px;
+	background: blue;
+}
+</style>
+<div id="scene" class="qimo8" data-pointer-events='true' data-limit-x='false' data-limit-y='true' data-friction-x='0.15' data-friction-y='1' data-calibrate-x='false' data-calibrate-y='true' data-scalar-x='20' data-scalar-y='30' data-invert-x='true' data-invert-y='true' data-origin-x='0.5'>
+	<div class="test four"  data-pointer-events='true' data-depth='0.00'>4</div>
+	<div class="test three"  data-depth='0.20'>3</div>
+	<div class="test two "  data-depth='0.60'>2</div>
+	<div class="test one" data-depth='1.00'>1</div>
+	
+	
+	
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+<script>
+	var scene = document.getElementById('scene')
+	var parallax = new Parallax(scene)
+	console.log(parallax)
+</script>
+</body>
+</html>

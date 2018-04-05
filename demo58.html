@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+	function add(val){  
+    var rs = function(oval){  
+        return add(val + oval);  
+    }  
+    rs.toString = function(){  
+        return val;  
+    }  
+    return rs;  
+}  
+console.log(add(1)(2)(3));  
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+	//冒泡排序
+	function bubbleSort(arr){
+	  var i = j = 0;
+	  for(i; i<arr.length-1; i++){
+	    for(j; j<=arr.length-i; j++){
+	      var temp = 0;
+	      // ">" 从小到大排序
+	      // "<" 从大到小排序
+	      if(arr[j] > arr[j+1]){
+	        temp = arr[j]
+	        arr[j] = arr[j+1]
+	        arr[j+1] = temp
+	      }
+	    }
+	  }
+	  return arr
+	}
+	var dd = bubbleSort([0,1,4,3,2])
+    // console.log(dd)
+  //快速排序
+　function quickSort(arr){
+        //如果数组<=1,则直接返回
+        if(arr.length<=1){return arr;}
+        var pivotIndex=Math.floor(arr.length/2);
+        //找基准，并把基准从原数组删除
+        var pivot=arr.splice(pivotIndex,1)[0];
+        //定义左右数组
+        var left=[];
+        var right=[];
+
+        //比基准小的放在left，比基准大的放在right
+        for(var i=0;i<arr.length;i++){
+            if(arr[i]<=pivot){
+                left.push(arr[i]);
+            }
+            else{
+                right.push(arr[i]);
+            }
+        }
+        //递归
+        return [...quickSort(left),pivot, ...quickSort(right)]
+    }  
+        // var cc= quickSort([0,1,4,3,2])
+        // console.log(cc)
+      //奇数在左边，偶数在右边
+      var arr= [1,4,5,2,3]
+      arr.sort(function(a,b){
+      	// console.log(a,b)
+		return 1
+      })
+
+      // console.log(arr)
+      //求一个数组中第二大元素
+     var arr= [1,4,5,2,3,7,8]
+     arr.splice(arr.indexOf(Math.max(...arr)),1)
+     // console.log(Math.max(...arr))
+      //判断对象是否为空
+    function judge(obj){
+	   for(var i in obj){//如果不为空，则会执行到这一步，返回true
+　　　　   return true;
+	　　}
+ 　　   return false;
+    }
+       //object.length== ‘0’
+       // JSON.stringify(object)=="{}"
+      //反转字符串
+    function reverseString(str) {  
+		return str == str.split('').reverse().join('');
+	}
+    function reverseString(str) { return str && reverseString(str.substr(1)) + str[0]; }
+    //统计一个字符串出现最多的字母
+  
+	function test(n){
+	    console.log(n)
+	}
+	test(1); 
+
+
+
+</script>
+</html>

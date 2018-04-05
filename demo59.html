@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+// var Singleton = (function () {
+//     var instantiated;
+//     function init() {
+//         /*这里定义单例代码*/
+//         return {
+//             publicMethod: function () {
+//                 console.log('hello world');
+//             },
+//             publicProperty: 'test'
+//         };
+//     }
+
+//     return {
+//         getInstance: function () {
+//             if (!instantiated) {
+//                 instantiated = init();
+//             }
+//             return instantiated;
+//         }
+//     };
+// })();
+
+// var s1 = Singleton.getInstance()
+// var s2 = Singleton.getInstance()
+// alert(s1 === s2);//false
+// function Universe() {
+//     // 缓存实例
+//     var instance;
+//     // 重新构造函数
+//     Universe = function Universe() {
+//         return instance;
+//     };
+
+//     // 后期处理原型属性
+//     // Universe.prototype = this;
+
+//     // 实例
+//     instance = new Universe();
+
+//     // 重设构造函数指针
+//     // instance.constructor = Universe;
+
+//     // 其它功能
+//     instance.start_time = 0;
+//     instance.bang = "Big";
+
+//     return instance;
+// }
+// var uni = new Universe();
+// var uni2 = new Universe();
+// console.log(uni === uni2); // true
+      function Universe() {
+        // do we have an existing instance?
+    
+        // proceed as normal
+        this.start_time = 0;
+        this.bang = "Big";
+        // cache
+        Universe.instance = this;
+        // implicit return:
+        // return this;
+        if (typeof Universe.instance === 'object') {
+          return Universe.instance;
+        }
+      }
+      // testing
+      var uni = new Universe();
+      // var uni2 = new Universe();
+
+ // true
+ console.log(uni === uni2)
+</script>
+</html>

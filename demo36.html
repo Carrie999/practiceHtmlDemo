@@ -1,0 +1,30 @@
+
+ <!-- 
+Author: lJian 
+-->  
+  
+<!DOCTYPE html>  
+<html>  
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8">
+<title>dispatchEvent示例用法</title>
+<script type="text/javascript">
+ var values = [0, 1, 5, 10, 15];
+ function compare(value1, value2) {
+    if (value1 < value2) {
+        return -1;
+    } else if (value1 > value2) {
+        return 1;
+    } else {
+		return 0; }
+}
+ values=values.sort(compare);
+ console.log(values)
+
+</script>
+</head>
+<body>
+
+</body>
+</html> 

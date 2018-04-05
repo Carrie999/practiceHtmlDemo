@@ -1,0 +1,371 @@
+<template>
+  <el-row class="warp">
+    <el-col :span="24" class="warp-breadcrum">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item><b>儿歌管理</b></el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/songs' }">歌单列表</el-breadcrumb-item>
+        <el-breadcrumb-item>歌曲列表</el-breadcrumb-item>
+      </el-breadcrumb>
+    </el-col>
+
+    <el-col :span="24" class="warp-main">
+      <el-form ref="form" :model="searchForm">
+        <!-- 第一行 -->
+        <el-row class='input-row'>
+          <span class="input-label">&nbsp;&nbsp;&nbsp;来源</span>
+          <el-input class="input-suffix" placeholder="请输入内容" v-model="searchForm.songSheetId"></el-input>
+          <span class="input-label">&nbsp;&nbsp;&nbsp;songID</span>
+          <el-input class="input-suffix" placeholder="请输入内容" v-model="searchForm.songSheetName">
+            <template slot-scope="scope" >{{scope.row.songSheetName }}</template>
+          </el-input>
+          <span class="input-label">歌曲名称</span>
+          <el-input class="input-suffix" placeholder="请输入内容" v-model="searchForm.songSheetAlias"></el-input>
+          <el-button class='search' type="primary" icon="el-icon-search">搜索</el-button>
+        </el-row><!-- 第一行结束 -->
+      </el-form>
+
+      <el-button class='add-button' type="primary" icon="el-icon-plus"  @click="dialogFormVisible = true">添加曲目</el-button>
+
+      <div class='source'>
+      <el-table class='tabel-list'
+        :data="tableData"
+        style="width: 100%">
+        <el-table-column
+          prop="songID"
+          label="songID"
+          width="100">
+        </el-table-column>
+      
+        <el-table-column
+          prop="songname"
+          label="歌曲名称"
+          width="220">
+          <template slot-scope="scope" >
+            <div @click="music(scope.row)" style="cursor:pointer;" v-if='!scope.row.href'>
+            <a v-if="scope.row == indexMusic && indexMusic"><i class='iconfont icon-zanting tubiaoColor'></i></a>
+            <a v-else><i class='iconfont icon-bofang tubiaoColor'></i></a>
+            <a  class="audioBtn" >{{ scope.row.songname }}</a>
+            </div>
+            <div v-else>
+               <a class="songnamehref" target="_blank" :href="scope.row.href">{{ scope.row.songname }}</a>
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="singername"
+          label="CP名称"
+          width="150">
+          <template slot-scope="scope">{{ scope.row.singername }}</template>
+        </el-table-column>
+        <el-table-column
+          prop="origin"
+          label="来源"
+          width="80">
+        </el-table-column>
+        <el-table-column
+          prop="sort"
+          label="排序"
+          width="120">
+          <template slot-scope="scope">
+            <div class="sort-button">
+            <el-input type='text' v-model='scope.row.sort' :maxlength="8" @blur="onlyNum(scope.row)"></el-input>
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="hot"
+          label="热度"
+          width="120">
+        </el-table-column>
+         <el-table-column
+          prop="tag"
+          label="状态"
+          width="100">
+        <template slot-scope="scope">
+          <el-tag class='sing-status'
+            :type="scope.row.status === '上线' ? 'success' : 'danger'"
+            close-transition>{{scope.row.status}}</el-tag>
+        </template>
+        </el-table-column>
+         <el-table-column
+          prop="operate"
+          label="操作"> 
+          <template slot-scope="scope">
+            <el-button @click="editRow(scope.row.songID)" type="text" size="small">编辑</el-button>
+            <el-button type="text" size="small" @click='deleteRow(scope.row)'>删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table><!--列表结束-->
+    </div>
+      <!--分页-->
+      <div class='page'>
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page.sync="currentPage4"
+          :page-sizes="[15, 20, 30]"
+          :page-size="15"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="400">
+        </el-pagination>
+      </div>
+       <!--分页结束-->
+    </el-col>
+
+    <template>
+      <audio ref="bgMusic" class="bgMusic"></audio> 
+        <!--el-button
+          plain
+          @click="openNotifySuc">
+          成功
+        </el-button-->
+    </template>
+
+    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="通过songID添加" :label-width="formLabelWidth">
+          <el-input v-model="form.popSongId" class='popInput'></el-input>
+        </el-form-item>
+        <el-form-item label="通过歌曲名添加" :label-width="formLabelWidth">
+          <el-dropdown :hide-on-click="true" trigger="click" @command="handleCommand">
+            <span class="el-dropdown-link">
+              <el-input v-model="form.popSongName" class='popInput'></el-input>
+            </span>
+            <el-dropdown-menu slot="dropdown" class='popDropDown'>
+              <el-dropdown-item command="明明就">明明就</el-dropdown-item>
+              <el-dropdown-item command="龙卷风">龙卷风</el-dropdown-item>
+              <el-dropdown-item command="青花瓷">青花瓷</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </el-form-item>
+       
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="cancelDialog()">取 消</el-button>
+        <el-button type="primary" @click="confirmDialog()">确 定</el-button>
+      </div>
+    </el-dialog>
+
+  </el-row>
+</template>
+<script>
+  export default{
+    data(){
+      return {
+        searchForm:{
+          songSheetId:'',
+          songSheetName:'',
+          songSheetAlias:'',
+          songSheetTags:''
+        },
+        tableData: [{
+          songID: '2323423',
+          origin: 'Orion',
+          songname: '算什么男人',
+          singername:'周杰伦',
+          sort:'1',
+          hot:'12212',
+          status:'上线',
+          mp3:'../../../static/man.mp3',
+        }, {
+          songID: '2323423',
+          origin: 'Orion',
+          songname: '算什么男人',
+          singername:'周杰伦',
+          sort:'2',
+          hot:'12122',
+          status:'下线',
+          mp3:'../../../static/man.mp3'
+        }, {
+          songID: '2323423',
+          origin: 'Orion',
+          songname: '黑色毛衣',
+          singername:'周杰伦',
+          sort:'3',
+          hot:'12122',
+          status:'下线',
+          mp3:'../../../static/blackCoat.mp3'
+        }, {
+          songID: '2323423',
+          origin: 'Orion',
+          songname: '黑色毛衣',
+          singername:'周杰伦',
+          sort:'4',
+          hot:'12122',
+          status:'下线',
+          mp3:'../../../static/blackCoat.mp3'
+        }, {
+          songID: '2323423',
+          origin: 'Orion',
+          songname: '黑色毛衣',
+          singername:'周杰伦',
+          sort:'5',
+          hot:'12122',
+          status:'下线',
+          mp3:'../../../static/blackCoat.mp3'
+        }, {
+          songID: '2323423',
+          origin: 'Orion',
+          songname: '夜的第七章',
+          singername:'周杰伦',
+          sort:'6',
+          hot:'12122',
+          status:'下线',
+          mp3:'../../../static/blackCoat.mp3',
+          href:'https://y.qq.com/n/yqq/song/004Akkce39MD2k.html?ADTAG=h5_playsong&no_redirect=1'
+        }, {
+          songID: '2323423',
+          origin: 'Orion',
+          songname: '彩虹',
+          singername:'周杰伦',
+          sort:'7',
+          hot:'12122',
+          status:'下线',
+          mp3:'../../../static/caihong.mp3'
+        }],
+        currentPage4: 4,
+        indexMusic:'',
+        dialogFormVisible:false,
+        form: {
+          popSongId: '',
+          popSongName: ''
+        },
+        formLabelWidth: '120px'
+      }
+    },
+    methods:{
+      onlyNum(row){
+        row.sort = parseInt(row.sort) || 0;
+      },
+      music(row){
+        if(this.indexMusic==''){
+          this.indexMusic=row   
+        }
+        var music = this.$refs.bgMusic;
+        if(music.paused){
+           music.src=row.mp3
+           music.play();
+        }else{
+          if(this.indexMusic!==row){
+            this.indexMusic=row
+            music.src=row.mp3
+            music.play();
+          }else{
+            this.indexMusic='';
+            music.pause();
+          }    
+        }
+      },
+      deleteRow(row){
+        this.$options.methods.openNotifyConfirm.bind(this)(row);
+        //this.$options.methods.openNotifySuc.bind(this)('删除成功');
+      },
+      openNotifyConfirm(row){
+        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.tableData.splice(row, 1);
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
+      },
+      editRow(row){ 
+        this.$router.push({ name: '单曲添加', params: { songId: row }})
+      },
+      handleSizeChange(val) {
+        console.log(`每页 ${val} 条`);
+      },
+      handleCurrentChange(val) {
+        console.log(`当前页: ${val}`);
+      },
+      confirmDialog(){
+        this.dialogFormVisible = false;
+        this.form.popSongId = '';
+        this.form.popSongName = '';
+      },
+      cancelDialog(){
+        this.dialogFormVisible = false;
+        this.form.popSongId = '';
+        this.form.popSongName = '';
+      },
+      handleCommand(command) {
+        this.form.popSongName=command;
+        //this.$message('click on item ' + command);
+      }
+    }
+  }
+</script>
+<style scoped lang="scss">
+  .input-suffix{
+    width:160px;
+    margin-right:40px;
+  }
+  .input-label{
+    text-align:right;
+    margin-top:11px;
+    margin-right:5px;
+    font-size:14px;
+    width:100px !important;
+    height:40px;
+  }
+  .input-row{
+    height:40px;
+    width:1100px;
+    margin-top:15px;
+    margin-bottom:10px;
+  }
+  .search{
+    position:relative;
+    left:2px;
+    top:-1px;
+  }
+  .add-button{
+    margin-top:7px;
+    background:#3dc16e;
+    border-color:#3dc16e;
+    margin-bottom:10px;
+  }
+  .add-button:hover{
+    background:#59d286;
+    border-color:#59d286;
+  }
+  .add-button:focus{
+    background:#3dc16e;
+    border-color:#3dc16e;
+  }
+  .el-tag.sing-status{
+    line-height:18px;
+    height:19px;
+    padding:0 3px;
+  }
+  .sort-button{
+    width:55px;
+    padding:4px;
+    border:none;
+  }
+  .tubiaoColor{
+    color:#8b93a2;
+  }
+  .songnamehref{
+    color:#606266;
+  }
+  .page{
+    margin-left:150px;
+    margin-top:20px;
+  }
+  .popInput{
+    width:400px;
+  }
+  .popDropDown{
+    width:400px;
+  }
+</style>

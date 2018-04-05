@@ -1,0 +1,44 @@
+
+ <!-- 
+Author: lJian 
+-->  
+  
+<!DOCTYPE html>  
+<html>  
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8">
+<title>dispatchEvent示例用法</title>
+<script type="text/javascript">
+function Person(){
+}
+Person.prototype.name = "Nicholas";
+Person.prototype.age = 29;
+Person.prototype.job = "Software Engineer";
+Person.prototype.sayName = function(){
+    alert(this.name);
+};
+var person1 = new Person();
+var person2 = new Person();
+person1.name = "Greg";
+alert(person1.name);
+alert(person2.name);
+delete person1.name;
+alert(person1.name);
+//"Greg"——来自实例 //"Nicholas"——来自原型
+//"Nicholas"——来自原型
+
+// function Person(name, age, job){
+// 	this.name = name;
+//     this.age = age;
+//     this.job = job;
+// }
+// var person1 = new Person("Nicholas", 29, "Software Engineer");
+// // Person.prototype.constructor
+// console.log(person1.__proto__.__proto__.__proto__)
+</script>
+</head>
+<body>
+
+</body>
+</html> 
