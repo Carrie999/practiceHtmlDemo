@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>bind</title>
+</head>
+<body>
+  
+</body>
+<script>
+	Function.prototype.testBind = function(that){
+
+		if (typeof this !== "function") {
+      		throw new Error("Function.prototype.bind - what is trying to be bound is not callable");
+        }
+        // console.log(arguments)
+        // console.log(Array.prototype.slice.apply(arguments,[1]))
+		 // console.log(that)
+  		// console.log(this)
+        var _this = this,
+            slice = Array.prototype.slice,
+            args = slice.apply(arguments,[1]),
+            fNOP = function () {},
+            bound = function(){
+                //这里的this指的是调用时候的环境
+                return _this.apply(this instanceof  fNOP ?　this : that||window,
+                    args.concat(Array.prototype.slice.apply(arguments,[0]))
+                )
+            }  
+
+         // console.log(this instanceof fNOP)  
+        fNOP.prototype = _this.prototype;
+    
+        bound.prototype = new fNOP();
+    
+        return bound;
+    }
+    // console.log(typeof(foo))
+    var cc = foo.testBind(bar,1221,1212)
+
+	cc();
+    // new cc();
+  
+
+</script>
+</html>

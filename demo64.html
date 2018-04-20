@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BFC</title>
+</head>
+<style>
+
+  .wrap{
+    display: inline;
+    /*overflow: hidden;*/
+  }
+  .box1{
+    background: red;
+    width: 100px;
+    height: 100px;
+
+  }
+  .box2{
+    background: yellow;
+    width: 100px;
+    height: 100px;
+  }
+  .box3{
+    background: blue;
+    width: 100px;
+    height: 100px;
+  }
+  .clearfloat{
+
+    /*float: left;*/
+    /*position:absolute;*/
+    /*overflow: hidden;*/
+    /*display: table-cell;*/
+    /*clear:both;*/
+  } 
+</style>
+<body>
+ <!--  <div class="wrap">
+    <div class="box1"></div>
+  </div>  
+  <div class="wrap">
+   <div class="box2"></div>  
+  </div>  -->
+  <!-- <div class="wrap">
+    <div class="clearfloat">
+      <div class="box1"></div> 
+      <div class="box2"></div>  
+    </div>
+     <div>123712392103120983901289312</div>
+     <div class="box3"></div>
+  </div> -->
+  <div class="wrap">
+    <p>wq21212121</p>
+     <p>wq21212121</p>
+      <p>wq21212121</p>
+    <div class="box1"></div>
+    <div class="box2"></div> 
+  </div>  
+</body>
+</html>

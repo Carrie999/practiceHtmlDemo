@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>css实现点点点的动效</title>
+  <style>
+.dotting {
+    display: inline-block; min-width: 2px; min-height: 2px;
+    box-shadow: 2px 0 currentColor, 6px 0 currentColor, 10px 0 currentColor; /* for IE9+, ..., 3个点 */
+    animation: dot 4s infinite step-start both; /* for IE10+, ... */
+    *zoom: expression(this.innerHTML = '...'); /*  for IE7. 若无需兼容IE7, 此行删除 */
+}
+.dotting:before { content: '...'; } /* for IE8. 若无需兼容IE8, 此行以及下一行删除*/
+.dotting::before { content: ''; } /* for IE9+ 覆盖 IE8 */
+:root .dotting { margin-right: 8px; } /* for IE9+,FF,CH,OP,SF 占据空间*/
+
+@keyframes dot {
+    25% { box-shadow: none; }                                  /* 0个点 */
+    50% { box-shadow: 2px 0 currentColor; }                    /* 1个点 */
+    75% { box-shadow: 2px 0 currentColor, 6px 0 currentColor;  /* 2个点 */ }
+}
+  </style>
 </head>
 <body>
-  
+	<p>q211212</p>
+	<button >登陆<span class="dotting"></span></button>
+
 </body>
 <script>
-var start = new Date();   
-var end = 0;   
-setTimeout(function() { console.log(new Date() - start); }, 500);   
-while (new Date() - start <= 1000) {} 
-
-function sum(x, y) {
-    console.log(x+y) //3
-}
-setTimeout(sum, 1000, 1, 3);
-
+  var start = new Date();   
+  var end = 0;   
+  setTimeout(function() { console.log(new Date() - start); }, 500);   
+  while (new Date() - start <= 1000) {} 
+  function sum(x, y) {
+      console.log(x+y) //3
+  }
+  setTimeout(sum, 1000, 1, 3);
 </script>
 </html>

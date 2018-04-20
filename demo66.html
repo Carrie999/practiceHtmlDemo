@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  .box{
+    width: 100px;
+    height: 100px;
+     background: yellow;
+  }
+  .box2{
+    width: 100px;
+    height: 100px;
+    background: red;
+  }
+</style>
+<body>
+  <div>
+    <div class="box">
+      <p>31212</p>
+      <div class="box2"></div>
+    </div>
+  </div>  
+</body>
+<script>
+  // console.log(document.body.clientWidth)
+  // var cc = document.getElementsByClassName('box2') 
+  // console.log(cc[0].getBoundingClientRect())
+  // console.log(cc[0].clientHeight)
+  (function() {
+    var lastTime = 0;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+    }
+    if (!window.requestAnimationFrame) window.requestAnimationFrame = function(callback, element) {
+        var currTime = new Date().getTime();
+        var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+        var id = window.setTimeout(function() {
+            callback(currTime + timeToCall);
+        }, timeToCall);
+        lastTime = currTime + timeToCall;
+        return id;
+    };
+    if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function(id) {
+        clearTimeout(id);
+    };
+}());
+
+</script>
+</html>

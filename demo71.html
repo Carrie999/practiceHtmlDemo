@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>谈谈JS的观察者模式（自定义事件）</title>
+</head>
+
+<style>
+#box{background-color: lightblue;width: 100px;height: 100px;margin-left: 10px;margin-right: 10px;}
+.in{height: 30px;}
+</style>
+	<!-- <body>
+		<ul id="box">
+		    <li class="in">1</li>
+		    <li class="in">2</li>
+		</ul>	
+	</body> -->
+	<body style="height:1600px;">  
+	<div class="main">  
+		1212122112122112
+	    <div class="box" id="box"></div>  
+	</div> 
+	</body> 
+<script>
+
+// box.onclick = function(e){
+//     e = e || event;
+//     e.currentTarget.style.backgroundColor = 'pink';
+// }
+// box.onmouseout = function(e){
+//     e = e || event;
+//     e.target.style.backgroundColor = 'lightblue';
+// }
+
+// var oBox = document.getElementById('box');  
+  
+// window.onload = function(){  
+      
+//     oBox.onmousedown = function(ev){  
+//         ev = ev || window.event;  
+          
+//         console.log(ev.offsetX, ev.offsetY);  
+//         console.log(ev.clientX, ev.clientY);  
+//         // console.log(ev.pageX, ev.pageY);  
+//         console.log(ev.screenX, ev.screenY);  
+//         console.log(ev.layerX, ev.layerY);  
+//         console.log(ev.x, ev.y);  
+//     }  
+// }  
+
+// var event = {};    //发布者（hr）
+// event.clietList = []; //发布者的缓存列表（应聘者列表）
+
+// event.listen = function(fn) { //增加订阅者函数
+//     this.clietList.push(fn);
+// };
+
+// event.trigger = function() { //发布消息函数
+//     for (var i = 0; i < this.clietList.length; i++) {
+//         var fn = this.clietList[i];
+//         fn.apply(this, arguments);
+//     }
+// };
+
+// event.listen(function(time) { //某人订阅了这个消息
+//     console.log('正式上班时间：' + time);
+// });
+
+// event.trigger('2016/10','yes'); //发布消息
+// 输出 正式上班时间:2016/10  
+
+var Event = {
+    // 通过on接口监听事件eventName
+    // 如果事件eventName被触发，则执行callback回调函数
+    on: function (eventName, callback) {
+        //我的代码
+        if(!this.handles){
+             this.handles={};    
+        }      
+        if(!this.handles[eventName]){
+            this.handles[eventName]=[];
+        }
+        this.handles[eventName].push(callback);
+    },
+    // 触发事件 eventName
+    emit: function (eventName) {
+        //你的代码
+        if(this.handles[arguments[0]]){
+            for(var i=0;i<this.handles[arguments[0]].length;i++){
+               this.handles[arguments[0]][i](arguments[1]);
+            }
+        }
+    }
+};
+
+var person1 = {};
+var person2 = {};
+Object.assign(person1, Event);
+Object.assign(person2, Event);
+person1.on('call1', function (params) {
+    console.log(params);
+});
+person2.on('call2', function (params) {
+    console.log(params);
+});
+person2.on('call2', function (params) {
+    console.log('1221121212');
+});
+person1.emit('call1','1'); // 输出 'person1'
+person1.emit('call2','2'); // 没有输出
+person2.emit('call1','3'); // 没有输出
+person2.emit('call2','4'); // 输出 'person2'
+</script>
+</script>
+</html>
