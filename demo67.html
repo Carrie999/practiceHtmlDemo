@@ -38,7 +38,7 @@
 var timer;
 btn.onclick = function(){
     myDiv.style.width = '0';
-    cancelAnimationFrame(timer);
+    // cancelAnimationFrame(timer);
     timer = requestAnimationFrame(function fn(){
         if(parseInt(myDiv.style.width) < 500){
             myDiv.style.width = parseInt(myDiv.style.width) + 5 + 'px';

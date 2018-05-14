@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>getComputedStyle</title>
+</head>
+<style>
+  .test{
+    width: 100px;
+    height: 100px;
+    background-color: #34538b;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+  }
+</style>
+<div class="test">使用getComputedStyle获取CSS 属性值</div>
+<script>
+  var test = document.querySelector('.test')
+  var oStyle = test.currentStyle? test.currentStyle : window.getComputedStyle(test, null);
+  console.log(oStyle.height)
+  // console.log(oStyle.getPropertyValue('background-color'))
+  if (oStyle.getPropertyValue) {
+    console.log("getPropertyValue下背景色：" + oStyle.getPropertyValue("background-color"));
+  } else {
+    console.log("getAttribute下背景色：" + oStyle.getAttribute("backgroundColor"));
+  }
+</script>
+</html>

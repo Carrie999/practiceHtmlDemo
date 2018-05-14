@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+	<style>
+		.foo{
+			width: 100px;
+			height:100px;
+			background: lightblue;
+		}
+	</style>
+<body>
+<div class="box">
+  <div class="foo">21121212
+  </div>
+<!--   <div style="width:400px; height:200px;">
+    <span style="float:left; width:auto; height:100%;">
+      <i style="position:absolute;float:left; width:100px; height:50px;">hello</i>
+    </span>
+  </div>
+ -->
+</div>    
+</body>
+<script>
+	var foo = document.querySelector('.foo')
+	foo.addEventListener('mouseover', function(){
+		console.log('2222')
+	})
+	foo.addEventListener('mouseleave', function(){
+		console.log('111')
+	})
+	// var  a1= {};
+	// a2= Object.create(a1)
+	// console.log(a2.__proto__ == a1)
+	function A(){};  
+	var a = new A();
+	// console.log(A.prototype.constructor==A)
+	// console.log(a.constructor == A)
+	// console.log(a.__proto__ == A.prototype)
+	// console.log(A.__proto__ == Function.prototype)
+
+	 // var obj = {};
+	 // obj.log = console.log;
+	 // obj.log.call(console, this)
+	 function cc(a,b){
+	 	// this.name1 ='1211111'
+	 	console.log(a+b)
+	 	console.log(this)
+	 }
+	 function bb(){
+	 	this.name ='vbbbbbb'
+	 }
+	 // cc.call(bb,'1212','2121')
+	 // console.log(bb())
+	 
+	 // console.log(cc())
+</script>
+</html>

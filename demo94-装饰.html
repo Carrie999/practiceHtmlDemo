@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+ //需要装饰的类（函数）
+function Macbook() {
+    this.cost = function () {
+        return 1000;
+    };
+}
+
+function Memory(macbook) {
+    this.cost = function () {
+        return macbook.cost() + 75;
+    };
+}
+
+function BlurayDrive(macbook) {
+    this.cost = function () {
+        return macbook.cost() + 300;
+    };
+}
+
+
+function Insurance(macbook) {
+    this.cost = function () {
+        return macbook.cost() + 250;
+    };
+}
+
+
+// 用法
+var myMacbook = new Insurance(new BlurayDrive(new Memory(new Macbook())));
+console.log(myMacbook.cost());
+
+// 装饰者模式是为已有功能动态地添加更多功能的一种方式，把每个要装饰的功能放在单独的函数里，然后用该函数包装所要装饰的已有函数对象，因此，当需要执行特殊行为的时候，调用代码就可以根据需要有选择地、按顺序地使用装饰功能来包装对象。优点是把类（函数）的核心职责和装饰功能区分开了。
+//Decorator
+@testable
+class MyTestableClass {
+  // ...
+}
+
+function testable(target) {
+  target.isTestable = true;
+}
+
+MyTestableClass.isTestable // true
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>获取子节点class属性</title>
+</head>
+<style>
+  .box{
+    width: 100px;
+    height: 100px;
+    background: #123;
+    color: red;
+  }
+  .test{
+    width: 100px;
+    height: 100px;
+    background: lightpink;
+  }
+</style>
+<body>
+  <div class="box">
+    <div class="test"></div>
+  </div>  
+</body>
+<script>
+  var boxDiv = document.getElementsByClassName('box')
+  console.log(boxDiv[0].children[0].getAttribute('class'))
+  console.log(boxDiv[0].getAttributeNode("class").nodeValue)
+
+</script>
+</html>

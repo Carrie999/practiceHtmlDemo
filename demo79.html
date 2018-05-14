@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <script>
+            function setup(){
+                var outer = document.getElementById('outer');
+                outer.addEventListener('click', function(){console.log('outer false');}, false);
+                outer.addEventListener('click', function(){console.log('outer true');}, true);
+
+                var inner = document.getElementById('inner');
+                inner.addEventListener('click', function(){console.log('inner false');}, false);
+                inner.addEventListener('click', function(){console.log('inner true');}, true);
+            }           
+        </script>
+        <style>
+            div {
+                border: 1px solid;
+                padding: 1em;
+            }
+        </style>
+    </head>
+    <body onload="setup()">
+        <div id="outer">
+            <div id="inner">
+                CLICK
+            </div>
+        </div>
+    </body>
+</html>

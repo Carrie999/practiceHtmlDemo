@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        2221
+    </div>
+</body>
+<script>
+    let arr = [...new Set(['2018-03-05', '2013-06-12','2019-03-12','2018-03-05','2014-02-22'])].sort(function(a,b){
+      return a>b // 这里返回的是升序的,降序改下返回值就好了.所以是相对
+    })
+    // console.log(arr)
+    let cc = [1,4,6,2].sort(function(a,b){
+        return a-b;
+    })
+    // console.log(cc)
+    // 数字最大的一个
+    // console.log(Math.max.apply(null,cc))
+    // let dd = [1,3,4,6]
+    // console.log(dd.includes(2))
+    // var arr1 = ['a', 'b', 'c'];
+    // console.log(arr1.includes('d', -100));
+    // 去重
+    var testArr = [1,6,8,3,7,9,2,7,2,4,4,3,3,1,5,3];
+    Array.prototype.dupeChar = function(){
+        console.log(this)
+        var tmp = [];
+        var dupliArray = [];
+        var that = this;
+        var temp = new Set(this)
+        temp.has()
+        for(let i = 0; i<this.length;i++){
+            if(!tmp.includes(this[i])){
+                tmp.push(this[i])
+            }else {
+                if(!dupliArray.includes(this[i])){
+                    dupliArray.push(this[i])
+                }
+            }
+        }
+        // return dupliArray
+    } 
+    // 排序
+    var par = [{age:5,name:'张三'},{age:3,name:'李四'},{age:15,name:'王五'},{age:1,name:'随便'}]
+     par.sort(function(a,b){
+        return a.age-b.age
+    })
+    // 判断是否是回文
+    var gg = 'abccba'
+    function palindrome(text){
+        return text.split('').reverse().join('') === text?'是回文':'不是回文'
+    }
+    console.log(palindrome(gg))
+    // 正则
+    function trim(params){
+        return params.replace(/^\w+@\w+(\.[a-z]+){1,3}$/g,'');
+    }
+    ll= '  qwqw -———–——_121212  /// 1212'
+    var test='abc345efgabcab'; 
+    uu = test.replace(/(\d)/g,'[$1]'); 
+    console.log(uu)
+    var isPalindromes = function(params){
+     // 传入参数先转为字符串且全部转为小写,最后去除多余字符比较
+      params = params.toString().toLowerCase().replace(/[\W_\s]/g,'');
+      console.log(params)
+      return params === params.split('').reverse().join('');
+    }
+    // isPalindromes('abc_ &b #@a')
+    // 实现数组或对象的深浅拷贝
+    //  var obj1 ={a:'11111',b:'2222'}
+    
+    // var obj2 ={}
+    // obj2 = obj1
+    // console.log(obj2)
+    function deepClone(obj){
+        var newObj = obj.constructor === Array ? []:{};
+        if(typeof obj !== 'object'){
+            return
+        }else{
+            for(var i in obj){
+                if(obj.hasOwnProperty(i)){
+                    newObj[i] = typeof obj[i] === 'object'?deepClone(obj[i]):obj[i];
+                }
+            }
+        }
+        return newObj
+    }
+    var arr2= [1,4,5,2,3]
+    arr2.sort(function(a,b){
+        // console.log(a,b)
+        return a % 2 == 0 ?-1:1
+    })
+    console.log(arr2)
+    console.log(Math.max(...arr2))
+    //二分查找
+    function binSearch(target, arr, start, end) {
+      var start = start || 0; // 允许从什么位置开始,下标
+      var end = end || arr.length - 1; // 什么位置结束,下标
+      start >= end ? -1 : ''; // 没有找到,直接返回-1
+      var mid = Math.floor((start + end) / 2); // 中位下标
+      if (target == arr[mid]) {
+        return mid; // 找到直接返回下标
+      } else if (target > arr[mid]) {
+        //目标值若是大于中位值,则下标往前走一位
+        return binSearch(target, arr, start, mid - 1);
+      } else {
+        //若是目标值小于中位值,则下标往后退一位
+        return binSearch(target, arr, mid + 1, end);
+      }
+    }
+
+</script>
+</html>

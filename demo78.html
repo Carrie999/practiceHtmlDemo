@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.shanxing{
+	/*	width: 100px;
+		height: 100px;
+		background: pink;
+		border-top-left-radius:100px; 
+		*/
+	  position: relative;
+	  width: 0;
+      height: 0;
+      border-width: 50px;
+      border-style: solid;
+      border-color: #ccc transparent #ddd;
+      border-radius: 50px;
+      animation: moveChangeColor  ease-in 2.5s 10 forwards running;
+      transform: rotateY(30deg);
+	}
+	@keyframes moveChangeColor{
+		from{
+			transform: rotateZ(0deg);
+		}
+		to{
+			transform: rotateZ(180deg);
+		}
+	}
+</style>
+<body>
+	<div class="box">
+		<!-- <div class="shanxing"></div> -->
+		<div class="test">1</div>
+		<div class="test">2</div>	
+		<div class="test">3</div>
+	</div>
+</body>
+<script>
+	var boxDiv = document.querySelector('.box');
+	var pElement = document.createElement('div');
+	var t = document.createTextNode("CLICK ME");
+	pElement.appendChild(t)
+	// pElement.innerHTML = '2121211212';
+	pElement.style.color="red";
+	// boxDiv.appendChild(pElement)
+	boxDiv.insertBefore(pElement, boxDiv.children[1])
+	// boxDiv.replaceChild(pElement, boxDiv.children[1])
+	// boxDiv.removeChild(boxDiv.children[3])
+	console.log(pElement.previousElementSibling)
+	pElement.setAttribute('name', '12121212');
+
+</script>
+</html>

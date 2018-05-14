@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+ var sum = function(x,y) { return x + y }; 
+ var succ = sum.bind(null, 1); //让this指向null，其后的实参也会作为实参传入被绑定的函数sum
+
+ succ(2); // => 3: 可以看到1绑定到了sum函数中的x
+ console.log(succ(6))
+</script>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <title>aysnc</title>
@@ -8,37 +8,60 @@
   
 </body>
 <script>
-  async function async1() {
-    console.log("a");
-    var cc = await async2(); //执行这一句后，await会让出当前线程，将后面的代码加到任务队列中，然后继续执行函数后面的同步代码
-   console.log(cc)
-    console.log("b");
+//   async function async1() {
+//     console.log("a");
+//     var cc = await async2(); //执行这一句后，await会让出当前线程，将后面的代码加到任务队列中，然后继续执行函数后面的同步代码
+//     console.log(cc)
+//     console.log("b");
 
-}
-async function async2() {
-    console.log('c');
-}
-async1();
-// function resolveAfter2Seconds(x) { 
-//   return new Promise(resolve => {
-//     setTimeout(() => {
-//       resolve(x);
-//     }, 2000);
-//   });
 // }
+// async function async2() {
+//     console.log('c');
+//    	setTimeout(()=>{
+//    		return 1
+//    	},1000)
+// }
+// async1();
 
-// async function f1() {
-//   var x = await resolveAfter2Seconds(10);
-//   console.log(x); // 10
-//   console.log('211212'); // 10
-// }
+function resolveAfter2Seconds(x) { 
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(x);
+    }, 2000);
+  });
+}
+
+async function f1() {
+  var x = await resolveAfter2Seconds(10);
+  console.log(x); // 10
+  console.log('211212'); // 10
+}
 // f1();
 
-async function testAsync() {
-    return "hello async";
+// async function testAsync() {
+//     return "hello async";
+// }
+
+// const result = testAsync();
+// console.log(result);
+async function getSomething() {
+    return Promise.resolve("hello async");
 }
 
-const result = testAsync();
-console.log(result);
+async function testAsync() {
+	return new Promise(resolve => {
+	    setTimeout(() => {
+	      resolve("hello async");
+	    }, 2000);
+	 });
+
+}
+
+async function test() {
+    const v1 = await getSomething();
+    // const v2 = await testAsync();
+    console.log(v1);
+}
+test();
 </script>
 </html>

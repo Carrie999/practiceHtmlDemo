@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event</title>
+</head>
+<style>
+  #id{
+    width: 100px;
+    height: 100px;
+    background: pink;
+  }
+</style>
+<body>
+  <div id="wraper">
+    <div id="box">
+      121212212
+    </div>
+  </div>
+</body>
+<script>
+  //自定义事件
+  var box = document.getElementById('box')
+  // var evt = new Event("look", {"bubbles":true, "cancelable":false});
+  // box.addEventListener('look',function (argument) {
+  //   console.log('我是look监听事件')
+  // })
+  var event = new CustomEvent("cat", {"detail":{"hazcheeseburger":true}})
+  box.addEventListener("cat", function(e) { console.log(e.detail) })
+  // box.dispatchEvent(event)
+  setTimeout(()=>{
+    box.dispatchEvent(event);
+  },1000)
+
+</script>
+</html>

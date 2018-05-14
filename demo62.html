@@ -58,6 +58,7 @@
       	// console.log(a,b)
 		return 1
       })
+      // console.log(arr)
 
       // console.log(arr)
       //求一个数组中第二大元素
@@ -84,6 +85,52 @@
 	    console.log(n)
 	}
 	test(1); 
+
+  //选择排序   
+  function selectionSort(arr) {
+    var len = arr.length;
+    var minIndex, temp;
+    for (var i = 0; i < len - 1; i++) {
+        minIndex = i;
+        for (var j = i + 1; j < len; j++) {
+            if (arr[j] < arr[minIndex]) {     // 寻找最小的数
+                minIndex = j;                 // 将最小数的索引保存
+            }
+        }
+        temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+    return arr;
+  } 
+  //插入排序
+  function insertionSort(arr) {
+    var len = arr.length;
+    var preIndex, current;
+    for (var i = 1; i < len; i++) {
+        preIndex = i - 1;
+        current = arr[i];
+        while (preIndex >= 0 && arr[preIndex] > current) {
+            arr[preIndex + 1] = arr[preIndex];
+            preIndex--;
+        }
+        arr[preIndex + 1] = current;
+    }
+    return arr;
+  }
+   //反转二叉树
+  var invertTree = function(root) {
+    if(root == null) { // 如果不存在，则返回[]
+        return root;
+    } else { // 交换左右结点
+        var temp = root.left;
+        root.left  = root.right;
+        root.right = temp;
+    }
+    invertTree(root.left); // 转换左子树
+    invertTree(root.right); // 转换右子树
+    return root;//返回最后结果
+  };
 
 
 </script>

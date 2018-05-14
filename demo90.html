@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div>1221122121</div>
+</body>
+<script>
+  Function.prototype.applyOne = function(context) {
+    var context = context || window
+    // 首先要获取调用call的函数，用this可以获取
+    // console.log(this)
+    // console.log(context)
+    var args = arguments[1] //获取传入的数组参数
+    context.fn = this;
+    context.fn(arguments[1]);
+    delete context.fn;
+  }
+
+  //简单写一个不带参数的demo
+  var jawil = {
+      name: "jawil",
+      sayHello: function (value) {
+           console.log(this.name,value[0],value[1],value[2]);
+       }
+  };
+
+  var  lulin = {
+      name: "lulin",
+  };
+
+  //看看结果：
+  jawil.sayHello.applyOne(lulin,[24,12,12])//lulin
+
+</script>
+</html>
