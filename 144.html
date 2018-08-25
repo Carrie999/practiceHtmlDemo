@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+<style> 
+#myDIV {
+    margin: 25px;
+    width: 550px;
+    height: 100px;
+    background: orange;
+    position: relative;
+    font-size: 20px;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes mymove {
+    from {top: 0px;}
+    to {top: 200px;}
+}
+@keyframes mymove {
+    from {top: 0px;}
+    to {top: 200px;}
+}
+</style>
+</head>
+<body>
+<div id="test" style="width:1px;height:17px;background:#0f0;">0%</div>
+<input type="button" value="Run" id="run"/>
+<!-- p>该实例使用了 addEventListener() 方法为 DIV 元素添加"animationstart", "animationiteration" 和 "animationend" 事件。</p>
+<div id="myDIV" onclick="myFunction()">点我开始动画</div> -->
+<script>
+// var x = document.getElementById("myDIV")
+// // 使用 JavaScript 开始动画
+// function myFunction() {
+//     x.style.WebkitAnimation = "mymove 4s 2"; // Chrome, Safari 和 Opera 代码
+//     x.style.animation = "mymove 4s 2";
+// }
+// //  Chrome, Safari 和 Opera
+// x.addEventListener("webkitAnimationStart", myStartFunction);
+// x.addEventListener("webkitAnimationIteration", myIterationFunction);
+// x.addEventListener("webkitAnimationEnd", myEndFunction);
+// x.addEventListener("animationstart", myStartFunction);
+// x.addEventListener("animationiteration", myIterationFunction);
+// x.addEventListener("animationend", myEndFunction);
+// function myStartFunction() {
+//     this.innerHTML = "animationstart 事件触发 - 动画已经开始";
+//     this.style.backgroundColor = "pink";
+// }
+// function myIterationFunction() {
+//     this.innerHTML = "animationiteration 事件触发 - 动画重新播放";
+//     this.style.backgroundColor = "lightblue";
+// }
+// function myEndFunction() {
+//     this.innerHTML = "animationend 事件触发 - 动画已经完成";
+//     this.style.backgroundColor = "lightgray";
+// }
+
+window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+var ele = document.getElementById("test");
+var progress = 0;
+var cc;
+
+function step(timestamp) {
+    if (progress < 100) {
+        progress += 1;
+        ele.style.width = progress + "%";
+        ele.innerHTML=progress + "%";
+        cc = requestAnimationFrame(step);
+    }else{
+        cancelAnimationFrame(cc);
+    } 
+}
+
+// requestAnimationFrame(step);
+document.getElementById("run").addEventListener("click", function() {
+    ele.style.width = "0px";
+    progress = 0;
+    
+    
+    cc = requestAnimationFrame(step);
+}, false);
+
+
+</script>
+
+</body>
+</html>

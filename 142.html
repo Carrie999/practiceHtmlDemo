@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas实现椭圆运动</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+</head>
+<body>
+    <canvas id="canvas" width="100" height="100"></canvas>
+<script>
+var canvas = document.getElementById('canvas');
+   var ctx = canvas.getContext('2d');
+   ctx.translate(50,50);
+   ctx.beginPath();
+   ctx.moveTo(0,0);
+   ctx.arc(0, 0, 50, 0, 0.35 * Math.PI);
+   ctx.fill();
+</script>
+    <canvas id="cvs" ></canvas>
+    <canvas id="canvas">你的浏览器不支持canvas，请跟换其他浏览器试一试</canvas>
+    <script type="text/javascript">
+            var myCanvas = document.getElementById('cvs'); 
+            var myCanvas_rect = myCanvas.getBoundingClientRect(); 
+            var widths = myCanvas_rect.width; 
+            var heights = myCanvas_rect.height;
+
+       //扇形
+            CanvasRenderingContext2D.prototype.sector = function (x, y, radius, sDeg, eDeg) {
+                // 初始保存
+                this.save();
+                // 位移到目标点
+                this.translate(x, y);
+                this.beginPath();
+                // 画出圆弧
+                this.arc(0,0,radius,sDeg, eDeg);
+                // 再次保存以备旋转
+                this.save();
+                // 旋转至起始角度
+                this.rotate(eDeg);
+                // 移动到终点，准备连接终点与圆心
+                this.moveTo(radius,0);
+                // 连接到圆心
+                this.lineTo(0,0);
+                // 还原
+                this.restore();
+                // 旋转至起点角度
+                this.rotate(sDeg);
+                // 从圆心连接到起点
+                this.lineTo(radius,0);
+                this.closePath();
+                // 还原到最初保存的状态
+                this.restore();
+                return this;
+            }
+
+            var ctx = document.getElementById('cvs').getContext('2d');
+
+             ctx.fillStyle='yellow';
+             ctx.rotate(0)
+            ctx.sector(100,100,50,0,Math.PI/180*230).fill();
+            // let n = 0;
+            // let timer = setInterval(()=>{
+            //     ctx.sector(50,50,50,0,Math.PI/180*n).fill();
+            //     n+=1.2;
+            //     if(n >= 360){
+            //         clearInterval(timer)
+            //     }
+            // },10)
+            // ctx.stroke()
+            // cxt.clearRect(0,0,widths,heights);  
+
+             // ctx.sector(100,0,0,0,Math.PI/180*230).fill();
+    </script>
+</body>
+</html>

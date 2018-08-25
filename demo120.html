@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>JavaScript Patterns</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <button id="test">Test</button>
+    <script>
+    //   var LoopImages = function(imgArr,container){
+    //     this.imagesArrays = imgArr
+    //     this.container = container
+    //   }
+    //   LoopImages.prototype = {
+    //     createImage:function(){
+    //       console.log('111')
+    //     },
+    //     changeImage:function(){
+    //       console.log('2222')
+    //     }
+    //   }
+    //   var SlideLoopImg = function(imgArr,container){
+    //     LoopImages.call(this,imgArr,container)
+    //   }
+    //   SlideLoopImg.prototype = new LoopImages();
+
+    //   SlideLoopImg.prototype.changeImage = function(){
+    //     console.log('被重写33333333')
+    //   }
+    //   var FadeLoopImg = function(imgArr,container,arrow){
+    //     LoopImages.call(this,imgArr,container)
+    //     this.arrow = arrow
+    //   }
+    //   FadeLoopImg.prototype = new LoopImages();
+    //   FadeLoopImg.prototype.changeImage = function(){
+    //     console.log('被重写44444')
+    //   }
+
+
+
+    // var fageImg = new LoopImages(['0','1','2','3'],'slide',['left.jpg','right.jpg'])
+    // console.log(fageImg.container)
+    // fageImg.changeImage();
+    /* Title: Singleton
+       Description: restricts object creation for a class to only one instance
+       */
+      // 单例模式
+      var uni = new Universe();
+      var uni2 = new Universe();
+      uni === uni2; // true
+      function Universe() {
+        // do we have an existing instance?
+        if (typeof Universe.instance === 'object') {
+          return Universe.instance;
+        }
+        // proceed as normal
+        this.start_time = 0;
+        this.bang = "Big";
+        // cache
+        Universe.instance = this;
+        // implicit return:
+        // return this;
+      }
+
+
+      // decorator模式
+      var tree = {};
+      tree.decorate = function () {
+        console.log('Make sure the tree won\'t fall');
+      };
+      tree.getDecorator = function (deco) {
+        tree[deco].prototype = this;
+        return new tree[deco];
+      };
+      tree.RedBalls = function () {
+        this.decorate = function () {
+          this.RedBalls.prototype.decorate();
+          console.log('Put on some red balls');
+        }
+      };
+      tree.BlueBalls = function () {
+        this.decorate = function () {
+          this.BlueBalls.prototype.decorate();
+          console.log('Add blue balls');
+        }
+      };
+      tree.Angel = function () {
+        this.decorate = function () {
+          this.Angel.prototype.decorate();
+          console.log('An angel on the top');
+        }
+      };
+      tree = tree.getDecorator('BlueBalls');
+      // tree = tree.getDecorator('Angel');
+      // tree = tree.getDecorator('RedBalls');
+      tree.decorate();
+
+
+    </script>
+  </body>
+</html>

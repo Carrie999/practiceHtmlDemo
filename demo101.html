@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		
+	</div>	
+	<script>
+
+    //  var str8 = '2017-12-30';
+	// var re = /(\d+)-/g;
+	var str7 ="123456@foxmail.com";
+	re = /^\w+@[a-zA-Z0-9]+(\.[a-z]+){1,3}$/g;
+	console.log(str7.match(re))
+	
+
+	// str7.match(re) //打印结果txt hight high
+	function * g1(){
+	    yield 'a'
+	    yield 'b'
+	}
+	function * g2(){
+	    yield 1
+	    yield* g1()
+	    yield 2
+	}
+	console.log(g1())
+	console.log(g1())
+	console.log(g1())
+	console.log(g1())
+	console.log(g1())
+	
+	for(let v of g2()){
+	    console.log(v)
+	}
+
+	var arr= [1,4,5,2,3]
+    arr.sort(function(a,b){
+      	// console.log(a,b)
+		return 1
+    })
+    console.log(arr)
+
+	</script>	
+</body>
+</html>

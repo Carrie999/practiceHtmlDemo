@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @keyframes spin {
+            to{transform:rotate(180deg);}
+        }
+        @keyframes bg {
+            50%{background: #fff;}
+        }
+        .pie{width: 200px;height: 200px;background-color: red;margin: 50px auto;border-radius: 50%;
+            background-image: linear-gradient(to right,transparent 50%, #fff 0);
+            position: absolute;
+            opacity: 0.5;
+            left: 0;
+            top: 0;
+        }
+        .pie:before{
+            content: '';display: block;margin-left: 50%;height: 100%;
+            border-radius: 0 100% 100% 0 / 50%;
+            background-color: inherit;
+            transform-origin:left;
+            animation: spin 1.5s linear infinite,
+            bg 3s step-end infinite;
+        }
+    </style>
+</head>
+<body>
+<div style="position: relative;width: 200px;height: 200px;">
+    <div class="pie"></div>
+</div>
+
+
+
+
+
+</body>
+</html>

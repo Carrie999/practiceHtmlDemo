@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		arr = [1,2,3,4,5]
+		arr.forEach(function(element, index, array) {
+			// console.log(element, index)
+		});
+		cc = arr.map(function(element, index, array) {
+			return element*2
+		})
+		// console.log(cc) // [2, 4, 6, 8, 10]
+		// Map和forEach的区别
+		// 1、map速度比foreach快
+		// 2、map会返回一个新数组，不对原数组产生影响,foreach不会产生新数组，foreach返回undefined
+		// 3、map因为返回数组所以可以链式操作，foreach不能
+		// 4, map里可以用return ,而foreach里用return不起作用，foreach不能用break，会直接报错
+
+ 		var dd =['3', '2', '3'].map( str => parseInt(str) );
+ 		// console.log(dd)
+ 		var xs = ['10', '10', '10'];
+
+		xs = xs.map(parseInt);
+
+		// console.log(xs);
+
+		
+
+
+	</script>
+</body>
+</html>

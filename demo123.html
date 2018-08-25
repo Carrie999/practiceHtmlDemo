@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .menu{
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             height: 500px;
+        }
+        .menu ul li{
+            width: 70px;
+            height: 70px;
+            background: pink;
+            border-radius: 100%;
+            display: flex;
+            /*justify-content: center;*/
+            align-items: center;
+            position: absolute;
+
+        } 
+
+        .menu ul li:nth-child(7){
+            transform: rotate(45deg);
+            transform-origin: -40px -40px;
+        } 
+        .menu ul li:nth-child(8){
+            transform: rotate(90deg);
+            transform-origin: -40px -40px;
+        } 
+        .menu ul li:nth-child(1){
+            transform: rotate(135deg);
+            transform-origin: -40px -40px;
+        } 
+        .menu ul li:nth-child(2){
+            transform: rotate(180deg);
+            transform-origin: -40px -40px;
+        } 
+        .menu ul li:nth-child(5){
+            transform: rotate(-45deg);
+            transform-origin: -40px -40px;
+        } 
+        .menu ul li:nth-child(4){
+            transform: rotate(-90deg);
+            transform-origin: -40px -40px;
+        } 
+        .menu ul li:nth-child(3){
+            transform: rotate(-135deg);
+            transform-origin: -40px -40px;
+        } 
+
+        .menu ul li:nth-child(7) a{
+            transform: rotate(-45deg);
+        } 
+        .menu ul li:nth-child(8) a{
+            transform: rotate(-90deg);
+        } 
+        .menu ul li:nth-child(1) a{
+            transform: rotate(-135deg);
+        } 
+        .menu ul li:nth-child(2) a{
+            transform: rotate(-180deg);
+        } 
+        .menu ul li:nth-child(5) a{
+            transform: rotate(45deg);
+        } 
+        .menu ul li:nth-child(4) a{
+            transform: rotate(90deg);
+        } 
+        .menu ul li:nth-child(3) a{
+            transform: rotate(135deg);
+        } 
+
+        .menu ul li a{
+            font-size: 26px;
+            color: white;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+        } 
+    </style>
+</head>
+<body>
+    <div class='menu'>
+        <ul> 
+            <li><a href=''>1</a></li>
+            <li><a href=''>2</a></li>
+            <li><a href=''>3</a></li>
+            <li><a href=''>4</a></li>
+            <li><a href=''>5</a></li>
+            <li><a href=''>6</a></li>
+            <li><a href=''>7</a></li>
+            <li><a href=''>8</a></li>
+        </ul> 
+    </div>
+    <script>
+
+
+
+
+
+
+        let arr = [[3, 2], [1, 1],[2,1],[1,2],[2,2],[3,1]] 
+        for(let i=0; i<arr.length ; i++){
+            for(let j=0;j<arr.length-i-1; j++){
+                if(arr[j][0] > arr[j+1][0]){
+                    [ arr[j], arr[j+1] ] = [ arr[j+1] , arr[j] ]
+                }
+                if(arr[j][0] === arr[j+1][0]){
+                    if(arr[j][1] < arr[j+1][1]){
+                        [ arr[j], arr[j+1] ] = [ arr[j+1] , arr[j] ]
+                    }
+                }
+            }
+        }
+        // console.log(arr)
+
+
+    </script>
+</body>
+</html>

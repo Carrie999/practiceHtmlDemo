@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    function dd() {
+        return new Promise(function(resolve, reject) {
+           setTimeout(() => resolve("long_time_value"), 1000);
+        })
+    }
+    async function cc() {
+        await dd()
+        console.log('111111')   
+    }
+    cc() 
+    // ff = new Promise().resolve(1)
+    // console.log(ff)
+    // ff.then((res)=>{console.log(res)})
+    // Promise.resolve('1').then((res)=>{console.log(read)})
+
+
+
+  function start() {
+    return new Promise((resolve, reject) => {
+      resolve('start');
+      // return 112211
+    });
+  }
+
+  start()
+  .then(data => {
+    // promise start
+    // console.log('result of start: ', data);
+    // return Promise.resolve(1); // p1
+    // return 111
+    return 5555588239298
+  })
+  .then(data => {
+      console.log(2222222)
+      setTimeout(()=>{console.log(121212)},1000)
+    // promise p1
+    // console.log('result of p1: ', data);
+    // return Promise.reject(2); // p2
+  })
+  .then(data => {
+
+    // promise p2
+    // console.log('result of p2: ', data);
+    // return Promise.resolve(3); // p3
+  })
+  .catch(ex => {
+    // promise p3
+    console.log('ex: ', ex);
+    return Promise.resolve(4); // p4
+  })
+  .then(data => {
+    console.log(44444)
+    // promise p4
+    console.log('result of p4: ', data);
+  });
+
+
+  function* helloWorldGenerator() {
+    // 'hello';
+    // 'world';
+    // return 'ending';
+    if(true){
+      yield;
+    }
+  }
+
+  function Fibonacci (n) {
+    if ( n <= 1 ) {return 1};
+    return Fibonacci(n - 1) + Fibonacci(n - 2);
+  }
+
+  function Fibonacci2 (n , ac1 = 1 , ac2 = 1) {
+    if( n <= 1 ) {return ac2};
+    return Fibonacci2 (n - 1, ac2, ac1 + ac2);
+  }
+
+
+
+  var hw = helloWorldGenerator();
+  // console.log(hw)
+  console.log(hw.next())
+  console.log(hw.next())
+  console.log(hw.next())
+  console.log(hw.next())
+
+  // function recursive(n){
+  //   if(n === 1){
+  //     return 1
+  //   }else {
+  //     return n*recursive(n-1)
+  //   }
+  // }
+   function recursive(n, total = 1){
+    if(n === 1){
+      return total
+    }else {
+      return recursive(n-1, n*total)
+    }
+  }
+  console.log(111111,recursive(4))
+
+
+
+  </script> 
+
+</body>
+</html>

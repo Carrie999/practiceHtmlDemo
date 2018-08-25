@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document自适应布局</title>
+	<style>
+	*{
+		padding:0;
+		margin:0;
+	}
+	.one {
+	    /*position: absolute;*/
+	    float: left;
+	    height: 200px;
+	    width: 300px;
+	    background-color: blue;
+	}
+	.two {
+		overflow: auto;
+	    height: 200px;
+	    /*margin-left: 300px;*/
+	    /*margin-right: 10px;*/
+	    background-color: red;
+	}
+
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="one"></div>
+	    <div class="two">第一种方法</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function toS(num){
+        let reg =/\B(?=(\d{3})+\b)/g;
+        // let reg = /((\d{3})+$)/g; ///B表示匹配非单词边界的元字符，而/b表示匹配单词边界
+        console.log(num.replace(reg,","))
+    }
+
+    // toS(10000000000+"");//1,000,000,000
+    aa = [121212,121212]
+    dd = {a:'1',b:'2'}
+    console.log(aa.toString())
+    console.log(aa.valueOf())
+     console.log(typeof(aa.toString()))
+    console.log(typeof(aa.valueOf()))
+    console.log(dd.toString())
+    console.log(dd.valueOf())
+    console.log({}==0)
+    console.log({}.valueOf())
+    var test={
+        age:20,
+        toString:function(){return this.age-10;},   //重写 toString()
+        valueOf:function(){return this.age+40;}    //重写 valueOf()
+    } 
+     var test2={
+        age:[0],
+        toString:function(){
+            console.log('toString')
+             console.log(this.age)
+             console.log(this.age.toString())
+            return this.age.toString();
+
+        },   //重写 toString()
+        valueOf:function(){
+            console.log('valueOf')
+            return this.age.valueOf();
+        }    //重写 valueOf()
+    }    
+    
+    // console.log(test2==0)
+    // alert(test>20);//true 调用的是 valueOf
+    // alert('1111'+test); //60 调用的是 valueOf
+    // alert(test); //10  调用的是 toString
+    
+    </script> 
+</body>
+</html>

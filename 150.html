@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+
+  <style> 
+
+  </style>
+  <div> 
+   <input id="demo1" type="text" value="" />
+   <div id="demo2"></div>
+
+  </div>
+</head>
+<body>
+
+<script>
+// console.log('111111111')
+
+
+function printInputValue() {
+  let inputValue = document.getElementById("demo1").value;
+  // console.log(inputValue);
+  document.getElementById("demo2").innerHTML = inputValue;
+
+ }
+ setTimeout(()=>{
+  printInputValue()
+ },2000)
+
+ // var inputValue = document.getElementById("demo1").value;
+ // console.log(inputValue);
+ // document.getElementById("demo2").innerHTML = inputValue;
+
+</script>
+
+</body>
+</html>

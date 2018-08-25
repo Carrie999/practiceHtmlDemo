@@ -1,13 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Document</title>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			width: 100%;
+			height: 300px;
+			background: pink;
+		}
+	</style>
 </head>
 <body>
-  
+
+	<div id="box"></div>	
+	<script>
+
+	function throFun(){
+		console.log('执行真正的函数')
+	}
+	var thro = throttle (throFun,1000);
+
+	box.addEventListener('click', function(){
+		thro();
+	})
+
+
+	function throttle (func,delay){
+		
+		var prev = Date.now();
+		console.log(prev)
+		return function(){
+			console.log('被触发')
+		    var context = this;
+		    var args = arguments;
+		    var now = Date.now();
+		    if(now-prev>=delay){
+		        func.apply(context,args);
+		        prev = Date.now();
+		    }
+		}
+	}
+
+
+    
+	function debounce(method,time){
+		var timer = null;
+		return function(){
+			console.log('被触发')
+			var context = this;
+			//在函数执行的时候先清除timer定时器;
+			
+			console.log(timer)
+			clearTimeout(timer);
+			timer = setTimeout(function(){
+				method.call(context);
+			},time);
+		}
+	}
+
+     function Counter() {
+            //赋初值  
+            console.log('11')
+            var count = 0;
+            //外部调用时形成闭包  
+            return function () {
+                console.log(++count)
+            }
+     }
+       Counter()()
+       Counter()()
+       Counter()()
+
+        function f1(){
+		    console.log('11')
+            var count = 0;
+            //外部调用时形成闭包  
+            return function () {
+                console.log(++count)
+            }
+		}
+		var result=f1();
+		result(); // 999
+		result(); 
+		result(); 
+       
+
+	</script>
 </body>
-<script>
-  
-</script>
 </html>

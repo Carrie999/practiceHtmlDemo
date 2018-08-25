@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>webcomponent</title>
+    </head>
+    <body>
+        <div>
+        	122112121212
+        </div>	
+        <script>
+        	var startTime = new Date(2018,4,30)
+        	startTime.setDate(startTime.getDate()+1);
+            console.log(startTime)
+            // console.log(startTime.getMonth())
+            // console.log(startTime)
+        	// startTime.setMonth(startTime.getMonth());
+        	// console.log(startTime.getMonth())
+     
+            // startTime.setTime(startTime.getTime() + 3600 * 1000 * 24 * 1)
+            // console.log(startTime)
+            // startTime.setDate(startTime.getDate()+1);
+            function checkDate() {
+
+			  //Wrong order-  will return 1 May 2016
+			  var start = new Date();
+			  start.setDate(28);
+			  start.setMonth(4);
+			  start.setFullYear(2016);
+			  alert(start)
+
+
+			  //Right  order - will return 31 May 2016
+			  var end = new Date();
+			  end.setFullYear(2016);
+			  end.setMonth(4);
+			  end.setDate(31);
+			  alert(end)
+
+
+			}
+			checkDate()
+        </script>
+    </body>
+</html> 

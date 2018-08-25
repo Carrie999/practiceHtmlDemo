@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+      .p1 {font-size: 16px; line-height: 32px;}
+      .s1 {font-size: 2em; }
+      .s2 {font-size: 2em; line-height: 2em;}
+
+      .p2 {font-size: 16px; line-height: 2;}
+      .s5 {font-size: 2em;}
+      .s6 {font-size: 2em; line-height: 2em;}
+    </style>
+</head>
+
+<body>
+    <div class="p1">
+      <div class="s1">1</div>
+      <div class="s2">1</div>
+    </div>
+    <div class="p2">
+      <div class="s5">1</div>
+      <div class="s6">1</div>
+    </div>
+</body>
+<script>
+  o ={}
+  var bValue = 38;
+  Object.defineProperty(o, 'b', {
+    get: function() { return bValue; },
+    set: function(newValue) { bValue = newValue; },
+    enumerable: true,
+    configurable: true
+  });
+  console.log(o.b)// 38
+</script>
+</html>

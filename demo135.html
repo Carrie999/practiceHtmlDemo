@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let arr = [3,4,7,5]
+    let arr2= []
+    for(let i=0;i<arr.length;i++){
+      arr2[arr.length-i-1] = arr[i]
+    }
+    // console.log(arr2)
+   function Vue(){
+      this.drink = function(){
+        console.log('drink')
+      }
+   }
+   Vue.prototype.drink= function(){
+        console.log('drink2')
+      }
+  Vue.eat = function(){
+    console.log('eat')
+  }
+  const drink = Vue.prototype.drink
+  Vue.prototype.drink=function(){
+    console.log('drink3')
+  }
+  drink()
+  // const lv = new Vue()
+  // Vue.eat();
+  console.log(window.performance)
+
+  function create_mark(name) {
+    if (performance.mark === undefined) {
+      console.log("performance.mark Not supported");
+      return;
+    }
+    // Create the performance mark
+    performance.mark(name);
+  }
+
+  create_mark("links")
+  val={}
+  props ={'a':1,'b':2}
+  for(const key in props){
+    val[key] = props[key]
+  }
+  console.log(val)
+  
+
+  </script>
+</body>
+</html>

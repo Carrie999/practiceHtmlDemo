@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		arr=[6,2,14,15,12,47,26,38,1,3,9,5,4,8,54,23,16,17,18,19,20,21]
+
+		for(let i=0;i<arr.length;i++){
+			for(let j=0;j<arr.length-i-1; j++){
+				if(arr[j]>arr[j+1]){
+					[ arr[j], arr[j+1] ] = [ arr[j+1] , arr[j] ]
+				}
+			}
+		}
+
+		arr =[1,2,3,4,5]
+
+		function getCombBySum(array,sum,tolerance,targetCount){
+		  var util = {
+		    /*
+		      get combination from array
+		      arr: target array
+		      num: combination item length
+		      return: one array that contain combination arrays
+		    */
+		    getCombination: function(arr, num) {
+		        var r=[];
+		        			   //4
+		        (function f(t,a,n){
+		            if (n==0){
+		              return r.push(t);
+		            }                          //1
+		            for (var i=0,l=a.length; i<=l-n; i++){
+		            	f(t.concat(a[i]), a.slice(i+1), n-1);
+		            	//a[0]加入进入 1     2,3,4,5      2
+
+		            }
+		      	})([],arr,num);
+		        return r;
+		    },
+		    //take array index to a array
+		    // 0,1,2,3,4
+		    getArrayIndex: function(array) {
+		      var i = 0,
+		        r = [];
+		      for(i = 0;i<array.length;i++){
+		        r.push(i);
+		      }
+		      
+		      return r;
+		    }
+		  },logic = {
+		    //sort the array,then get what's we need
+		    init: function(array,sum) {
+		      //clone array
+		      var _array = array.concat(),
+		      r = [],
+		      i = 0;
+		      //sort by asc
+		      _array.sort(function(a,b){
+		        return a - b;
+		      });
+		      //get all number when it's less than or equal sum
+		      for(i = 0;i<_array.length;i++){
+		        if(_array[i]<=sum){
+		          r.push(_array[i]); 
+		          // 把小于i的全部推进去
+		        }else{
+		          break;
+		        }
+		      }
+		      
+		      return r;
+		    },
+		    //important function
+		    core: function(array,sum,arrayIndex,count,r){
+		      var i = 0,
+		        k = 0,
+		        combArray = [],
+		        _sum = 0,
+		        _cca = [],
+		        _cache = [];
+		      
+		      if(count == _returnMark){
+		        return;
+		      }
+		      //get current count combination
+		      combArray = util.getCombination(arrayIndex,count);
+		      for(i = 0;i<combArray.length;i++){
+		        _cca = combArray[i];
+		        _sum = 0;
+		        _cache = [];
+		        //calculate the sum from combination
+		        for(k = 0;k<_cca.length;k++){
+		          _sum += array[_cca[k]];
+		          _cache.push(array[_cca[k]]);
+		        }
+		        if(Math.abs(_sum-sum) <= _tolerance){
+		          r.push(_cache);
+		        }
+		        }      
+		      
+		      logic.core(array,sum,arrayIndex,count-1,r);
+		    }
+		    
+		  },
+		    r = [],
+		    _array = [],
+		    _targetCount = 0,
+		    _tolerance = 0,
+		    _returnMark = 0;
+		  
+		  //check data
+		  _targetCount = targetCount || _targetCount;
+		  _tolerance = tolerance || _tolerance;
+		  
+		  _array = logic.init(array,sum);
+		  if(_targetCount){
+		    _returnMark = _targetCount-1;
+		  }
+		  
+		  logic.core(_array,sum,util.getArrayIndex(_array),(_targetCount || _array.length),r);
+		  
+		  return r;
+		}
+
+		cc = getCombBySum([1,2,3,4,5],7,1,3)
+
+		console.log(cc)
+
+
+
+		function cc(arr, num) {
+	        var r=[];
+	        			   //4
+	        (function f(t,a,n){
+	            if (n==0){
+	              return r.push(t);
+	            }            
+	            let k=1            //1
+	            for (var i=0,l=a.length; i<=l-n; i++){
+	            	f(t.concat(a[i]), a.slice(i+1), n-1);
+	            	//a[0]加入进入 1     2,3,4,5      2
+	            }
+	      	})([],arr,num);                              
+	        return r;
+		}
+		// console.log(cc([1,2,3,4,5],3))
+		
+		function getArrayIndex(array) {
+			var i = 0,
+			r = [];
+			for(i = 0;i<array.length;i++){
+				r.push(i);
+			}
+			return r;
+		}
+		// console.log(getArrayIndex([1,2,3,4,5]))
+
+        function dd(array,sum) {
+		      //clone array
+		      var _array = array.concat(),
+		      r = [],
+		      i = 0;
+		      //sort by asc
+		      _array.sort(function(a,b){
+		        return a - b;
+		      });
+		      //get all number when it's less than or equal sum
+		      for(i = 0;i<_array.length;i++){
+		        if(_array[i]<=sum){
+		          r.push(_array[i]); 
+		          // 把小于i的全部推进去
+		        }else{
+		          break;
+		        }
+		      }
+		      
+		      return r;
+		}
+		// console.log(dd([1,2,3,4,5],2))
+		
+
+
+		// calNextNumber(arr, n, sum) {
+		//     if(n == 0 && sum == 0){  // 符合条件
+		//         return true;
+		//     }
+		//     // 剩余的数字不足 或者 选择的数的和已经超过了总和
+		//     if ( n<0 ||n > arr.length || sum <= 0) {
+		//         reurn false;
+		//     }
+		//     arr2 =[]
+		//     len = arr.length
+		//     for (let i=0; i<len; i++) {
+		//         nextSum = sum - arr[i];
+
+		//         arr2.push(array[i]);  // 将可能的结果压入结果栈中
+		//         if( calNextNumber(arr, n-1 ,nextSum)){
+		//             return true;
+		//         }
+		//         calResult.pollLast();   // 不符合要求, 从结果栈中弹出
+		//     }
+		//     return false;
+		// }
+		
+    
+	</script>
+</body>
+</html>

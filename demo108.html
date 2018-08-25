@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box{
+			height: 200px;
+			background: red;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box">
+        <span id="day"></span>天
+        <span id="hour"></span>时
+        <span id="minutes"></span>分
+        <span id="second"></span>秒
+		<input type="text">
+		<input type="text">
+		<input type="text"><input type="text">
+
+		
+	</div>
+
+	<script>
+		setInterval(function() {
+			  timer();
+	    }, 1000);
+
+	    function timer() {
+	        var time = (new Date(2018, 5, 28, 14, 46, 0)) - (new Date());
+	        var day = parseInt(time / 1000 / 60 / 60 / 24, 10);
+	        var hour = parseInt(time/ 1000/ 60/ 60 % 24, 10);
+	        var min = parseInt(time / 1000 /60 % 60, 10);
+	        var second = parseInt((time / 1000) % 60, 10);
+	        document.getElementById('day').innerHTML = day;
+	        document.getElementById('hour').innerHTML = hour;
+	        document.getElementById('minutes').innerHTML = min;
+	        document.getElementById('second').innerHTML = second;
+	    }
+
+	</script>
+</body>
+<script>
+	
+</script>
+</html>
